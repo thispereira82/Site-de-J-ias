@@ -14,7 +14,6 @@ body {
 }
 
 header {
-    text-align: left;
     padding: 10px;
     background: #3b2a22;
 }
@@ -26,19 +25,26 @@ header {
 /* ABAS */
 .tabs {
     display: flex;
-    width: 100%;
     gap: 10px;
     padding: 10px;
 }
 
 .tab-btn {
     flex: 1;
-    padding: 12px;
+    padding: 14px;
     border: none;
     background: #ddd;
     cursor: pointer;
     border-radius: 25px;
-    font-size: 14px;
+    font-size: 16px;
+}
+
+/* 🔥 MOBILE */
+@media (max-width: 600px) {
+    .tab-btn {
+        padding: 8px;
+        font-size: 12px;
+    }
 }
 
 .tab-btn.active {
@@ -66,12 +72,9 @@ header {
     overflow: hidden;
     background: #fff;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
-/* IMAGEM RESPONSIVA + LUPA */
+/* IMAGEM */
 .card img {
     width: 100%;
     height: 35vw;
@@ -91,7 +94,6 @@ header {
 .price {
     font-weight: bold;
     color: #7a5c4d;
-    margin: 5px 0;
 }
 
 /* BOTÃO */
@@ -105,16 +107,9 @@ header {
     font-size: 13px;
 }
 
-.btn:hover {
-    transform: scale(1.05);
-    transition: 0.2s;
-}
-
 .btn-disabled {
     background-color: #a0a0a0;
     pointer-events: none;
-    cursor: not-allowed;
-    opacity: 0.7;
 }
 
 /* STATUS */
@@ -127,30 +122,16 @@ header {
     margin-bottom: 8px;
 }
 
-.disponivel {
-    background-color: #d4edda;
-    color: #155724;
-}
+.disponivel { background: #d4edda; color: #155724; }
+.reservado { background: #fff3cd; color: #856404; }
+.vendido { background: #f8d7da; color: #721c24; }
 
-.reservado {
-    background-color: #fff3cd;
-    color: #856404;
-}
-
-.vendido {
-    background-color: #f8d7da;
-    color: #721c24;
-}
-
-/* ZOOM (LUPA) */
+/* 🔍 ZOOM */
 #zoom {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
+    inset: 0;
+    background: rgba(0,0,0,0.85);
     justify-content: center;
     align-items: center;
     z-index: 999;
@@ -163,10 +144,10 @@ header {
     background: white;
 }
 
+/* RODAPÉ */
 footer {
     text-align: center;
     padding: 15px;
-    font-size: 13px;
 }
 </style>
 </head>
@@ -187,47 +168,25 @@ footer {
 
 <section class="products">
 
-    <div class="card" data-categoria="colar">
-        <img src="joia1.jpeg" onclick="ampliar(this)">
-        <div class="info">
-            <span class="status disponivel">Disponível</span>
-            <div>Colar Natural de Madeira</div>
-            <div class="price">R$ 45</div>
-            <a class="btn" href="https://wa.me/5511963429803?text=Olá,%20tenho%20interesse%20no%20Colar%20Natural">
-                Comprar
-            </a>
-        </div>
+<div class="card" data-categoria="colar">
+    <img src="joia1.jpeg" onclick="ampliar(this)">
+    <div class="info">
+        <span class="status disponivel">Disponível</span>
+        <div>Colar Natural de Madeira</div>
+        <div class="price">R$ 45</div>
+        <a class="btn" onclick="comprar('Colar Natural de Madeira')">Comprar</a>
     </div>
+</div>
 
-    <div class="card" data-categoria="colar">
-        <img src="joia2.jpeg" onclick="ampliar(this)">
-        <div class="info">
-            <span class="status reservado">Reservado</span>
-            <div>Colar de Madeira</div>
-            <div class="price">R$ 85</div>
-            <a class="btn" href="#">Ver disponibilidade</a>
-        </div>
+<div class="card" data-categoria="brinco">
+    <img src="joia2.jpeg" onclick="ampliar(this)">
+    <div class="info">
+        <span class="status reservado">Reservado</span>
+        <div>Brinco Madeira</div>
+        <div class="price">R$ 45</div>
+        <a class="btn">Ver disponibilidade</a>
     </div>
-
-    <div class="card" data-categoria="bracelete">
-        <img src="joia3.jpeg" onclick="ampliar(this)">
-        <div class="info">
-            <span class="status vendido">Vendido</span>
-            <div>Pulseira Rústica</div>
-            <div class="price">R$ 55</div>
-            <a class="btn btn-disabled">Indisponível</a>
-        </div>
-    </div>
-
-    <div class="card" data-categoria="brinco">
-        <img src="joia4.jpeg" onclick="ampliar(this)">
-        <div class="info">
-            <span class="status disponivel">Disponível</span>
-            <div>Brinco Madeira</div>
-            <div class="price">R$ 45</div>
-            <a class="btn" href="#">Comprar</a>
-        </div>
-    </div>
+</div>
 
 </section>
 
@@ -250,24 +209,24 @@ function filtrar(categoria, event) {
     event.target.classList.add('active');
 
     cards.forEach(card => {
-        if (categoria === 'todos' || card.dataset.categoria === categoria) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
+        card.style.display =
+            (categoria === 'todos' || card.dataset.categoria === categoria)
+            ? 'block' : 'none';
     });
 }
 
 function ampliar(img) {
-    const zoom = document.getElementById("zoom");
-    const imgZoom = document.getElementById("img-zoom");
-
-    imgZoom.src = img.src;
-    zoom.style.display = "flex";
+    document.getElementById("img-zoom").src = img.src;
+    document.getElementById("zoom").style.display = "flex";
 }
 
 function fecharZoom() {
     document.getElementById("zoom").style.display = "none";
+}
+
+function comprar(nome) {
+    const msg = `Olá, tenho interesse no ${nome}`;
+    window.open(`https://wa.me/5511963429803?text=${encodeURIComponent(msg)}`);
 }
 </script>
 
