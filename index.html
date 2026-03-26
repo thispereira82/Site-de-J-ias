@@ -88,19 +88,30 @@ header {
     object-fit: contain;
     padding: 10px;
     cursor: zoom-in;
+    transition: transform 0.3s ease;
 }
 
-/* 🔍 ÍCONE DE LUPA */
-.lupa {
+/* EFEITO */
+.card:hover img {
+    transform: scale(1.05);
+}
+
+/* OVERLAY MODERNO */
+.overlay {
     position: absolute;
-    bottom: 15px;
-    right: 15px;
-    background: rgba(0,0,0,0.6);
+    inset: 0;
+    background: rgba(0,0,0,0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #fff;
-    font-size: 18px;
-    padding: 6px 9px;
-    border-radius: 50%;
-    pointer-events: none;
+    font-size: 14px;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.card:hover .overlay {
+    opacity: 1;
 }
 
 /* INFO */
@@ -188,7 +199,7 @@ footer {
 
 <div class="card" data-categoria="colar">
     <img src="joia1.jpeg" onclick="ampliar(this)">
-    <div class="lupa">🔍</div>
+    <div class="overlay">Ver imagem</div>
     <div class="info">
         <span class="status disponivel">Disponível</span>
         <div>Colar Natural de Madeira</div>
@@ -199,7 +210,7 @@ footer {
 
 <div class="card" data-categoria="brinco">
     <img src="joia2.jpeg" onclick="ampliar(this)">
-    <div class="lupa">🔍</div>
+    <div class="overlay">Ver imagem</div>
     <div class="info">
         <span class="status reservado">Reservado</span>
         <div>Brinco Madeira</div>
@@ -208,80 +219,14 @@ footer {
     </div>
 </div>
 
-<div class="card" data-categoria="brinco">
+<div class="card" data-categoria="bracelete">
     <img src="joia3.jpeg" onclick="ampliar(this)">
-    <div class="lupa">🔍</div>
+    <div class="overlay">Ver imagem</div>
     <div class="info">
-        <span class="status reservado">Reservado</span>
-        <div>Brinco Madeira</div>
-        <div class="price">R$ 45</div>
-        <a class="btn">Ver disponibilidade</a>
-    </div>
-</div>
-
-<div class="card" data-categoria="brinco">
-    <img src="joia4.jpeg" onclick="ampliar(this)">
-    <div class="lupa">🔍</div>
-    <div class="info">
-        <span class="status reservado">Reservado</span>
-        <div>Brinco Madeira</div>
-        <div class="price">R$ 45</div>
-        <a class="btn">Ver disponibilidade</a>
-    </div>
-</div>
-
-<div class="card" data-categoria="brinco">
-    <img src="joia5.jpeg" onclick="ampliar(this)">
-    <div class="lupa">🔍</div>
-    <div class="info">
-        <span class="status reservado">Reservado</span>
-        <div>Brinco Madeira</div>
-        <div class="price">R$ 45</div>
-        <a class="btn">Ver disponibilidade</a>
-    </div>
-</div>
-
-<div class="card" data-categoria="brinco">
-    <img src="joia6.jpeg" onclick="ampliar(this)">
-    <div class="lupa">🔍</div>
-    <div class="info">
-        <span class="status reservado">Reservado</span>
-        <div>Brinco Madeira</div>
-        <div class="price">R$ 45</div>
-        <a class="btn">Ver disponibilidade</a>
-    </div>
-</div>
-
-<div class="card" data-categoria="brinco">
-    <img src="joia7.jpeg" onclick="ampliar(this)">
-    <div class="lupa">🔍</div>
-    <div class="info">
-        <span class="status reservado">Reservado</span>
-        <div>Brinco Madeira</div>
-        <div class="price">R$ 45</div>
-        <a class="btn">Ver disponibilidade</a>
-    </div>
-</div>
-
-<div class="card" data-categoria="brinco">
-    <img src="joia8.jpeg" onclick="ampliar(this)">
-    <div class="lupa">🔍</div>
-    <div class="info">
-        <span class="status reservado">Reservado</span>
-        <div>Brinco Madeira</div>
-        <div class="price">R$ 45</div>
-        <a class="btn">Ver disponibilidade</a>
-    </div>
-</div>
-
-<div class="card" data-categoria="brinco">
-    <img src="joia9.jpeg" onclick="ampliar(this)">
-    <div class="lupa">🔍</div>
-    <div class="info">
-        <span class="status reservado">Reservado</span>
-        <div>Brinco Madeira</div>
-        <div class="price">R$ 45</div>
-        <a class="btn">Ver disponibilidade</a>
+        <span class="status vendido">Vendido</span>
+        <div>Pulseira Rústica</div>
+        <div class="price">R$ 55</div>
+        <a class="btn btn-disabled">Indisponível</a>
     </div>
 </div>
 
