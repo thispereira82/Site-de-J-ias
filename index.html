@@ -10,16 +10,41 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #f4f1ec;
-    color: #2e2e2e; 
+    color: red;
 }
 
 header {
-    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 10px;
+    background: #F4A460;
+}
+
+.logo {
+    width: 420px;
+}header {
+   header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 10px; /* mais espaço */
     background: #3b2a22;
 }
 
 .logo {
-    max-width: 180px;
+    width: 540px;
+}
+}
+
+.logo {
+    width: 260px;
+}
+
+@media (max-width: 600px) {
+    .logo {
+        width: 180px;
+    }
 }
 
 /* ABAS */
@@ -95,7 +120,7 @@ header {
     transform: scale(1.05);
 }
 
-/* OVERLAY (CORRIGIDO) */
+/* OVERLAY */
 .overlay {
     position: absolute;
     inset: 0;
@@ -107,7 +132,7 @@ header {
     font-size: 14px;
     opacity: 0;
     transition: 0.3s;
-    pointer-events: none; /* 🔥 ESSA LINHA FAZ O ZOOM FUNCIONAR */
+    pointer-events: none;
 }
 
 .card:hover .overlay {
@@ -230,73 +255,7 @@ footer {
     </div>
 </div>
 
-<div class="card" data-categoria="bracelete">
-    <img src="joia4.jpeg" onclick="ampliar(this)">
-    <div class="overlay">Ver imagem</div>
-    <div class="info">
-        <span class="status vendido">Vendido</span>
-        <div>Pulseira Rústica</div>
-        <div class="price">R$ 55</div>
-        <a class="btn btn-disabled">Indisponível</a>
-    </div>
-</div>
-
-<div class="card" data-categoria="bracelete">
-    <img src="joia5.jpeg" onclick="ampliar(this)">
-    <div class="overlay">Ver imagem</div>
-    <div class="info">
-        <span class="status vendido">Vendido</span>
-        <div>Pulseira Rústica</div>
-        <div class="price">R$ 55</div>
-        <a class="btn btn-disabled">Indisponível</a>
-    </div>
-</div>
-
-<div class="card" data-categoria="bracelete">
-    <img src="joia6.jpeg" onclick="ampliar(this)">
-    <div class="overlay">Ver imagem</div>
-    <div class="info">
-        <span class="status vendido">Vendido</span>
-        <div>Pulseira Rústica</div>
-        <div class="price">R$ 55</div>
-        <a class="btn btn-disabled">Indisponível</a>
-    </div>
-</div>
-
-<div class="card" data-categoria="bracelete">
-    <img src="joia7.jpeg" onclick="ampliar(this)">
-    <div class="overlay">Ver imagem</div>
-    <div class="info">
-        <span class="status vendido">Vendido</span>
-        <div>Pulseira Rústica</div>
-        <div class="price">R$ 55</div>
-        <a class="btn btn-disabled">Indisponível</a>
-    </div>
-</div>
-
-<div class="card" data-categoria="bracelete">
-    <img src="joia8.jpeg" onclick="ampliar(this)">
-    <div class="overlay">Ver imagem</div>
-    <div class="info">
-        <span class="status vendido">Vendido</span>
-        <div>Pulseira Rústica</div>
-        <div class="price">R$ 55</div>
-        <a class="btn btn-disabled">Indisponível</a>
-    </div>
-</div>
-
-<div class="card" data-categoria="bracelete">
-    <img src="joia9.jpeg" onclick="ampliar(this)">
-    <div class="overlay">Ver imagem</div>
-    <div class="info">
-        <span class="status vendido">Vendido</span>
-        <div>Pulseira Rústica</div>
-        <div class="price">R$ 55</div>
-        <a class="btn btn-disabled">Indisponível</a>
-    </div>
-</div>
-
-
+<!-- DUPLICA OS CARDS ABAIXO CONFORME PRECISAR -->
 
 </section>
 
