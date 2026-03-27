@@ -9,41 +9,26 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #CD853F;
-    color: red;
+    background: #f6f4f1; /* mais elegante */
+    color: #2e2e2e;
 }
 
+/* HEADER (MAIS FINO E CLEAN) */
 header {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px 10px;
-    background: #F4A460;
+    padding: 25px 10px; /* 🔥 diminuído */
+    background: #2f3e34; /* verde escuro elegante */
 }
 
 .logo {
-    width: 320px;
-}header {
-   header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 10px; /* mais espaço */
-    background: #3b2a22;
-}
-
-.logo {
-    width: 540px;
-}
-}
-
-.logo {
-    width: 260px;
+    width: 440px;
 }
 
 @media (max-width: 600px) {
     .logo {
-        width: 180px;
+        width: 160px;
     }
 }
 
@@ -53,6 +38,7 @@ header {
     gap: 10px;
     padding: 10px;
     overflow-x: auto;
+    background: #ffffff;
 }
 
 .tabs::-webkit-scrollbar {
@@ -61,23 +47,21 @@ header {
 
 .tab-btn {
     flex: 1;
-    padding: 14px;
+    padding: 10px;
     border: none;
-    background: #ddd;
+    background: #eaeaea;
     cursor: pointer;
-    border-radius: 25px;
-    font-size: 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    transition: 0.2s;
 }
 
-@media (max-width: 600px) {
-    .tab-btn {
-        padding: 8px;
-        font-size: 12px;
-    }
+.tab-btn:hover {
+    background: #dcdcdc;
 }
 
 .tab-btn.active {
-    background: #3b2a22;
+    background: #2f3e34;
     color: #fff;
 }
 
@@ -97,10 +81,10 @@ header {
 
 /* CARD */
 .card {
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
     background: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
     position: relative;
 }
 
@@ -108,7 +92,7 @@ header {
 .card img {
     width: 100%;
     height: 35vw;
-    max-height: 400px;
+    max-height: 380px;
     min-height: 180px;
     object-fit: contain;
     padding: 10px;
@@ -124,12 +108,12 @@ header {
 .overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.25);
+    background: rgba(0,0,0,0.3);
     display: flex;
     justify-content: center;
     align-items: center;
     color: #fff;
-    font-size: 14px;
+    font-size: 13px;
     opacity: 0;
     transition: 0.3s;
     pointer-events: none;
@@ -141,28 +125,34 @@ header {
 
 /* INFO */
 .info {
-    padding: 10px;
+    padding: 12px;
     text-align: center;
 }
 
 .price {
     font-weight: bold;
-    color: #7a5c4d;
+    color: #3e5c4d;
 }
 
 /* BOTÃO */
 .btn {
     display: inline-block;
-    padding: 6px 12px;
-    background: #3b2a22;
+    padding: 8px 14px;
+    background: #2f3e34;
     color: #fff;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 6px;
     font-size: 13px;
+    margin-top: 5px;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background: #1f2a24;
 }
 
 .btn-disabled {
-    background-color: #a0a0a0;
+    background-color: #b0b0b0;
     pointer-events: none;
 }
 
@@ -185,7 +175,7 @@ header {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0,0,0,0.9);
     justify-content: center;
     align-items: center;
     z-index: 999;
@@ -202,6 +192,8 @@ header {
 footer {
     text-align: center;
     padding: 15px;
+    font-size: 13px;
+    color: #666;
 }
 </style>
 </head>
@@ -212,7 +204,6 @@ footer {
     <img src="logo.png" class="logo">
 </header>
 
-<!-- ABAS -->
 <div class="tabs">
     <button class="tab-btn active" onclick="filtrar('todos', event)">Todos</button>
     <button class="tab-btn" onclick="filtrar('brinco', event)">Brincos</button>
@@ -224,7 +215,7 @@ footer {
 
 <div class="card" data-categoria="colar">
     <img src="joia1.jpeg" onclick="ampliar(this)">
-    <div class="overlay">Ver imagem</div>
+    <div class="overlay">Clique para ampliar</div>
     <div class="info">
         <span class="status disponivel">Disponível</span>
         <div>Colar Natural de Madeira</div>
@@ -235,7 +226,7 @@ footer {
 
 <div class="card" data-categoria="brinco">
     <img src="joia2.jpeg" onclick="ampliar(this)">
-    <div class="overlay">Ver imagem</div>
+    <div class="overlay">Clique para ampliar</div>
     <div class="info">
         <span class="status reservado">Reservado</span>
         <div>Brinco Madeira</div>
@@ -246,7 +237,7 @@ footer {
 
 <div class="card" data-categoria="bracelete">
     <img src="joia3.jpeg" onclick="ampliar(this)">
-    <div class="overlay">Ver imagem</div>
+    <div class="overlay">Clique para ampliar</div>
     <div class="info">
         <span class="status vendido">Vendido</span>
         <div>Pulseira Rústica</div>
@@ -255,20 +246,16 @@ footer {
     </div>
 </div>
 
-<!-- DUPLICA OS CARDS ABAIXO CONFORME PRECISAR -->
-
 </section>
 
 <footer>
 📲 WhatsApp: (11) 96342-9803
 </footer>
 
-<!-- ZOOM -->
 <div id="zoom" onclick="fecharZoom()">
     <img id="img-zoom">
 </div>
 
-<!-- SCRIPT -->
 <script>
 function filtrar(categoria, event) {
     const cards = document.querySelectorAll('.card');
