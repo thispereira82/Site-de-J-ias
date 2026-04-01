@@ -9,17 +9,17 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f6f4f1; /* mais elegante */
+    background: #f6f4f1;
     color: #2e2e2e;
 }
 
-/* HEADER (MAIS FINO E CLEAN) */
+/* HEADER */
 header {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 25px 10px; /* 🔥 diminuído */
-    background: #2f3e34; /* verde escuro elegante */
+    padding: 25px 10px;
+    background: #2f3e34;
 }
 
 .logo {
@@ -53,11 +53,6 @@ header {
     cursor: pointer;
     border-radius: 20px;
     font-size: 20px;
-    transition: 0.2s;
-}
-
-.tab-btn:hover {
-    background: #dcdcdc;
 }
 
 .tab-btn.active {
@@ -86,6 +81,20 @@ header {
     background: #fff;
     box-shadow: 0 4px 10px rgba(0,0,0,0.06);
     position: relative;
+}
+
+/* NUMERO */
+.card::after {
+    content: attr(data-numero);
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: #2f3e34;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 20px;
 }
 
 /* IMAGEM */
@@ -144,16 +153,6 @@ header {
     border-radius: 6px;
     font-size: 13px;
     margin-top: 5px;
-    transition: 0.2s;
-}
-
-.btn:hover {
-    background: #1f2a24;
-}
-
-.btn-disabled {
-    background-color: #b0b0b0;
-    pointer-events: none;
 }
 
 /* STATUS */
@@ -213,146 +212,137 @@ footer {
 
 <section class="products">
 
-<div class="card" data-categoria="colar">
+<div class="card" data-numero="1" data-categoria="colar">
     <img src="joia1.jpeg" onclick="ampliar(this)">
     <div class="overlay">Clique para ampliar</div>
     <div class="info">
         <span class="status disponivel">Disponível</span>
         <div>Colar marchetaria de Madeira</div>
-        <div class="price">R$ 45</div>
-        <a class="btn" onclick="comprar('Colar Natural de Madeira')">Comprar</a>
+        <div class="price">R$ 50</div>
+        <a class="btn" onclick="comprar(this)">Comprar</a>
     </div>
 </div>
 
-<div class="card" data-categoria="colar">
+<div class="card" data-numero="2" data-categoria="bracelete">
     <img src="joia2.jpeg" onclick="ampliar(this)">
     <div class="overlay">Clique para ampliar</div>
     <div class="info">
         <span class="status disponivel">Disponível</span>
-        <div>Colar marchetaria de Madeira</div>
-        <div class="price">R$ 45</div>
-         <a class="btn" onclick="comprar('Colar Natural de Madeira')">Comprar</a>
-
+        <div>Bracelete de Madeira</div>
+        <div class="price">R$ 50</div>
+        <a class="btn" onclick="comprar(this)">Comprar</a>
     </div>
 </div>
 
-<div class="card" data-categoria="Colar">
+<div class="card" data-numero="3" data-categoria="bracelete">
     <img src="joia3.jpeg" onclick="ampliar(this)">
     <div class="overlay">Clique para ampliar</div>
     <div class="info">
         <span class="status disponivel">Disponível</span>
-        <div>Colar marchetaria de Madeira e resina</div>
-        <div class="price">R$ 55</div>
-         <a class="btn" onclick="comprar('Colar Natural de Madeira')">Comprar</a>
-
+        <div>Bracelete de Madeira</div>
+        <div class="price">R$ 50</div>
+        <a class="btn" onclick="comprar(this)">Comprar</a>
     </div>
 </div>
 
-<div class="card" data-categoria="Colar">
+<div class="card" data-numero="4" data-categoria="bracelete">
     <img src="joia4.jpeg" onclick="ampliar(this)">
     <div class="overlay">Clique para ampliar</div>
     <div class="info">
         <span class="status disponivel">Disponível</span>
-        <div>Colar marchetaria de Madeira e resina</div>
-        <div class="price">R$ 55</div>
-         <a class="btn" onclick="comprar('Colar Natural de Madeira')">Comprar</a>
-
+        <div>Bracelete de Madeira</div>
+        <div class="price">R$ 50</div>
+        <a class="btn" onclick="comprar(this)">Comprar</a>
     </div>
 </div>
 
-<div class="card" data-categoria="Colar">
+<div class="card" data-numero="5" data-categoria="bracelete">
     <img src="joia5.jpeg" onclick="ampliar(this)">
     <div class="overlay">Clique para ampliar</div>
     <div class="info">
         <span class="status disponivel">Disponível</span>
-        <div>Colar marchetaria de Madeira e resina</div>
-        <div class="price">R$ 55</div>
-         <a class="btn" onclick="comprar('Colar Natural de Madeira')">Comprar</a>
-
+        <div>Bracelete de Madeira</div>
+        <div class="price">R$ 50</div>
+        <a class="btn" onclick="comprar(this)">Comprar</a>
     </div>
 </div>
 
-<div class="card" data-categoria="Colar">
+
+<div class="card" data-numero="6" data-categoria="bracelete">
     <img src="joia6.jpeg" onclick="ampliar(this)">
     <div class="overlay">Clique para ampliar</div>
     <div class="info">
         <span class="status disponivel">Disponível</span>
-        <div>Colar marchetaria de Madeira e resina</div>
-        <div class="price">R$ 55</div>
-         <a class="btn" onclick="comprar('Colar Natural de Madeira')">Comprar</a>
-
+        <div>Bracelete de Madeira</div>
+        <div class="price">R$ 50</div>
+        <a class="btn" onclick="comprar(this)">Comprar</a>
     </div>
 </div>
 
-<div class="card" data-categoria="Brinco">
+
+<div class="card" data-numero="7" data-categoria="bracelete">
     <img src="joia7.jpeg" onclick="ampliar(this)">
     <div class="overlay">Clique para ampliar</div>
     <div class="info">
         <span class="status disponivel">Disponível</span>
-        <div>Brinco marchetaria de Madeira</div>
-        <div class="price">R$ 55</div>
-         <a class="btn" onclick="comprar('Brinco Natural de Madeira')">Comprar</a>
-
+        <div>Bracelete de Madeira</div>
+        <div class="price">R$ 50</div>
+        <a class="btn" onclick="comprar(this)">Comprar</a>
     </div>
 </div>
 
-<div class="card" data-categoria="Colar">
+<div class="card" data-numero="8" data-categoria="bracelete">
     <img src="joia8.jpeg" onclick="ampliar(this)">
     <div class="overlay">Clique para ampliar</div>
     <div class="info">
         <span class="status disponivel">Disponível</span>
-        <div>Colar marchetaria de Madeira</div>
-        <div class="price">R$ 55</div>
-         <a class="btn" onclick="comprar('Colar Natural de Madeira')">Comprar</a>
-
+        <div>Bracelete de Madeira</div>
+        <div class="price">R$ 50</div>
+        <a class="btn" onclick="comprar(this)">Comprar</a>
     </div>
 </div>
 
-<div class="card" data-categoria="Bracelete">
+<div class="card" data-numero="10" data-categoria="bracelete">
     <img src="joia10.jpg" onclick="ampliar(this)">
     <div class="overlay">Clique para ampliar</div>
     <div class="info">
         <span class="status disponivel">Disponível</span>
         <div>Bracelete de Madeira</div>
-        <div class="price">R$ 55</div>
-         <a class="btn" onclick="comprar('Bracelete de Madeira')">Comprar</a>
-
+        <div class="price">R$ 50</div>
+        <a class="btn" onclick="comprar(this)">Comprar</a>
     </div>
 </div>
 
-<div class="card" data-categoria="Colar">
+<div class="card" data-numero="11" data-categoria="bracelete">
     <img src="joia11.jpg" onclick="ampliar(this)">
     <div class="overlay">Clique para ampliar</div>
     <div class="info">
         <span class="status disponivel">Disponível</span>
-        <div>Colar marchetaria de Madeira e resina</div>
-        <div class="price">R$ 55</div>
-         <a class="btn" onclick="comprar('Colar Natural de Madeira')">Comprar</a>
-
+        <div>Bracelete de Madeira</div>
+        <div class="price">R$ 50</div>
+        <a class="btn" onclick="comprar(this)">Comprar</a>
     </div>
 </div>
 
-<div class="card" data-categoria="Colar">
+<div class="card" data-numero="13" data-categoria="bracelete">
     <img src="joia13.jpg" onclick="ampliar(this)">
     <div class="overlay">Clique para ampliar</div>
     <div class="info">
         <span class="status disponivel">Disponível</span>
-        <div>Colar marchetaria de Madeira e resina</div>
-        <div class="price">R$ 55</div>
-         <a class="btn" onclick="comprar('Colar Natural de Madeira')">Comprar</a>
-
+        <div>Bracelete de Madeira</div>
+        <div class="price">R$ 50</div>
+        <a class="btn" onclick="comprar(this)">Comprar</a>
     </div>
 </div>
 
-<div class="card" data-categoria="Colar">
+<div class="card" data-numero="14" data-categoria="bracelete">
     <img src="joia14.jpg" onclick="ampliar(this)">
     <div class="overlay">Clique para ampliar</div>
     <div class="info">
         <span class="status disponivel">Disponível</span>
-        <div>Colar marchetaria de Madeira e resina</div>
-        <div class="price">R$ 55</div>
-         <a class="btn" onclick="comprar('Colar Natural de Madeira')">Comprar</a>
-
+        <div>Bracelete de Madeira</div>
+        <div class="price">R$ 50</div>
+        <a class="btn" onclick="comprar(this)">Comprar</a>
     </div>
 </div>
 
@@ -362,8 +352,8 @@ footer {
     <div class="info">
         <span class="status vendido">Vendido</span>
         <div>Pulseira Rústica</div>
-        <div class="price">R$ 55</div>
-        <a class="btn btn-disabled">Indisponível</a>
+        <div class="price">R$ 30</div>
+          <a class="btn" onclick="comprar(this)">Comprar</a>
     </div>
 </div>
 
@@ -402,8 +392,11 @@ function fecharZoom() {
     document.getElementById("zoom").style.display = "none";
 }
 
-function comprar(nome) {
-    const msg = `Olá, tenho interesse no ${nome}`;
+function comprar(btn) {
+    const card = btn.closest('.card');
+    const numero = card.getAttribute('data-numero');
+
+    const msg = `Olá, tenho interesse na joia número ${numero}`;
     window.open(`https://wa.me/5511963429803?text=${encodeURIComponent(msg)}`);
 }
 </script>
