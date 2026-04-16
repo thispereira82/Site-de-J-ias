@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Verdeleve - Jóias</title>
 <style>
-body { font-family: Arial; background: #f6f4f1; margin: 0; }
+body { font-family: Arial, sans-serif; background: #f6f4f1; margin: 0; }
 header { background: #2f3e34; padding: 20px; text-align: center; }
 .logo { width: 300px; max-width: 80%; }
 .tabs { display: flex; gap: 10px; padding: 15px; background: white; flex-wrap: wrap; justify-content: center; }
@@ -13,10 +13,8 @@ header { background: #2f3e34; padding: 20px; text-align: center; }
 .tab-btn.active { background: #2f3e34; color: white; }
 .products { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 15px; }
 @media (max-width: 600px) { .products { grid-template-columns: 1fr; } }
-.card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); position: relative; }
-.card::after { content: "Nº " attr(data-numero); position: absolute; bottom: 10px; left: 10px; background: #2f3e34; color: white; padding: 5px 10px; border-radius: 20px; font-size: 12px; }
-.card img { width: 100%; height: 250px; object-fit: contain; cursor: pointer; }
-.info { padding: 12px; text-align: center; }
+.card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); position: relative; padding: 15px; text-align: center; }
+.card img { width: 100%; height: 200px; object-fit: contain; cursor: pointer; }
 .price { color: #3e5c4d; font-weight: bold; font-size: 18px; }
 .status { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 11px; margin-bottom: 8px; }
 .disponivel { background: #d4edda; color: #155724; }
@@ -26,7 +24,7 @@ header { background: #2f3e34; padding: 20px; text-align: center; }
 .admin-btn { position: fixed; bottom: 20px; right: 20px; background: #2f3e34; color: white; border: none; padding: 12px 20px; border-radius: 30px; cursor: pointer; z-index: 100; font-weight: bold; }
 .admin-panel { display: none; background: white; padding: 20px; margin: 10px; border-radius: 12px; border: 2px solid #2f3e34; }
 .admin-panel.show { display: block; }
-.admin-panel input, .admin-panel select { padding: 8px; margin: 5px 0; border: 1px solid #ddd; border-radius: 6px; }
+.admin-panel input, .admin-panel select { padding: 8px; margin: 5px 0; border: 1px solid #ddd; border-radius: 6px; width: 100%; }
 .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
 .form-group { flex: 1; }
 .btn-admin { background: #2f3e34; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
@@ -40,7 +38,7 @@ footer { text-align: center; padding: 20px; color: #666; }
 <body>
 
 <header>
-    <img src="logo.png" class="logo" onerror="this.src='https://placehold.co/400x100?text=Verdeleve'">
+    <img src="logo.png" class="logo" alt="Verdeleve" onerror="this.src='https://placehold.co/400x100?text=Verdeleve'">
 </header>
 
 <div class="tabs">
@@ -60,13 +58,13 @@ footer { text-align: center; padding: 20px; color: #666; }
 <button class="admin-btn" id="btnAdmin">🔒 Admin</button>
 
 <div class="admin-panel" id="adminPanel">
-    <h3>👑 Painel Admin</h3>
+    <h3>👑 Painel Administrador</h3>
     <div id="loginBox">
         <input type="password" id="senha" placeholder="Digite a senha">
         <button onclick="logar()">Entrar</button>
     </div>
     <div id="adminBox" style="display:none">
-        <h4>➕ Nova peça</h4>
+        <h4>➕ Adicionar nova peça</h4>
         <div class="form-row">
             <div class="form-group"><input type="text" id="nome" placeholder="Nome da peça"></div>
             <div class="form-group">
@@ -78,15 +76,14 @@ footer { text-align: center; padding: 20px; color: #666; }
             </div>
             <div class="form-group"><input type="number" id="preco" placeholder="Preço R$"></div>
             <div class="form-group"><input type="text" id="imagem" placeholder="Nome da imagem (ex: joia18.jpg)"></div>
-            <div class="form-group"><button class="btn-admin" onclick="adicionarPeca()">Adicionar</button></div>
+            <div class="form-group"><button class="btn-admin" onclick="adicionarPeca()">➕ Adicionar</button></div>
         </div>
-        <div id="resumo"></div>
-        <button onclick="sairAdmin()" style="background:#dc3545;color:white;border:none;padding:8px16px;margin-top:10px">Sair</button>
+        <div id="resumo" style="background:#f0f2f0;padding:10px;border-radius:8px;margin-top:10px"></div>
+        <button onclick="sairAdmin()" style="background:#dc3545;color:white;border:none;padding:8px 16px;margin-top:10px;border-radius:6px">🚪 Sair do modo admin</button>
     </div>
 </div>
 
 <script>
-// DADOS
 let joias = [
     { id:1, numero:"1", categoria:"colar", nome:"Colar marchetaria de Madeira", preco:50, status:"disponivel", img:"joia1.jpeg" },
     { id:2, numero:"2", categoria:"colar", nome:"Colar de Madeira", preco:45, status:"reservado", img:"joia2.jpeg" },
@@ -111,15 +108,15 @@ let adminLogado = false;
 const SENHA = "verdeleve2024";
 
 function salvar() {
-    localStorage.setItem("joias", JSON.stringify(joias));
-    localStorage.setItem("ultimoNumero", ultimoNumero);
+    localStorage.setItem("verdeleve_joias", JSON.stringify(joias));
+    localStorage.setItem("verdeleve_ultimoNumero", ultimoNumero);
 }
 
-function carregar() {
-    let saved = localStorage.getItem("joias");
+function carregarDados() {
+    let saved = localStorage.getItem("verdeleve_joias");
     if(saved) {
         joias = JSON.parse(saved);
-        ultimoNumero = parseInt(localStorage.getItem("ultimoNumero")) || 17;
+        ultimoNumero = parseInt(localStorage.getItem("verdeleve_ultimoNumero")) || 17;
     }
 }
 
@@ -131,9 +128,9 @@ function logar() {
         document.getElementById("adminBox").style.display = "block";
         atualizarResumo();
         renderizar();
-        alert("Admin logado!");
+        alert("✅ Modo administrador ativado!");
     } else {
-        alert("Senha errada!");
+        alert("❌ Senha incorreta!");
     }
 }
 
@@ -149,7 +146,7 @@ function atualizarResumo() {
     let total = joias.length;
     let disp = joias.filter(j => j.status !== "vendido").length;
     let vend = joias.filter(j => j.status === "vendido").length;
-    document.getElementById("resumo").innerHTML = `Total: ${total} | Disponíveis: ${disp} | Vendidas: ${vend} | Próximo Nº: ${ultimoNumero+1}`;
+    document.getElementById("resumo").innerHTML = `📊 Total: ${total} | ✨ Disponíveis: ${disp} | 💔 Vendidas: ${vend} | 🔢 Próximo Nº: ${ultimoNumero+1}`;
 }
 
 function adicionarPeca() {
@@ -158,12 +155,12 @@ function adicionarPeca() {
     let preco = parseInt(document.getElementById("preco").value);
     let img = document.getElementById("imagem").value.trim();
     
-    if(!nome) { alert("Digite o nome"); return; }
-    if(!preco) { alert("Digite o preço"); return; }
-    if(!img) { alert("Digite o nome da imagem"); return; }
+    if(!nome) { alert("❌ Digite o nome da peça"); return; }
+    if(!preco || preco <= 0) { alert("❌ Digite um preço válido"); return; }
+    if(!img) { alert("❌ Digite o nome do arquivo da imagem"); return; }
     
     ultimoNumero++;
-    let nova = {
+    let novaPeca = {
         id: Date.now(),
         numero: ultimoNumero.toString(),
         categoria: categoria,
@@ -173,7 +170,7 @@ function adicionarPeca() {
         img: img
     };
     
-    joias.push(nova);
+    joias.push(novaPeca);
     salvar();
     
     document.getElementById("nome").value = "";
@@ -182,31 +179,33 @@ function adicionarPeca() {
     
     atualizarResumo();
     renderizar();
-    alert(`Peça Nº ${ultimoNumero} adicionada!`);
+    alert(`✅ Peça Nº ${ultimoNumero} adicionada com sucesso!`);
 }
 
 function marcarVendida(id) {
-    if(!adminLogado) { alert("Acesso restrito"); return; }
+    if(!adminLogado) { alert("🔒 Acesso restrito"); return; }
     let joia = joias.find(j => j.id === id);
     if(joia && joia.status !== "vendido") {
-        if(confirm(`Vender peça Nº ${joia.numero}?`)) {
+        if(confirm(`✅ Confirmar venda da peça Nº ${joia.numero} - ${joia.nome}?`)) {
             joia.status = "vendido";
             salvar();
             renderizar();
             atualizarResumo();
+            alert(`✨ Peça Nº ${joia.numero} marcada como VENDIDA!`);
         }
     }
 }
 
-function restaurar(id) {
-    if(!adminLogado) { alert("Acesso restrito"); return; }
+function restaurarVenda(id) {
+    if(!adminLogado) { alert("🔒 Acesso restrito"); return; }
     let joia = joias.find(j => j.id === id);
     if(joia && joia.status === "vendido") {
-        if(confirm(`Restaurar peça Nº ${joia.numero}?`)) {
+        if(confirm(`♻️ Restaurar peça Nº ${joia.numero} - ${joia.nome}?`)) {
             joia.status = "disponivel";
             salvar();
             renderizar();
             atualizarResumo();
+            alert(`🔄 Peça Nº ${joia.numero} restaurada para DISPONÍVEL!`);
         }
     }
 }
@@ -225,7 +224,7 @@ function renderizar() {
     lista.sort((a,b) => parseInt(a.numero) - parseInt(b.numero));
     
     if(lista.length === 0) {
-        container.innerHTML = "<div style='text-align:center;padding:50px'>Nenhuma peça</div>";
+        container.innerHTML = "<div style='text-align:center;padding:50px'>✨ Nenhuma peça encontrada</div>";
         return;
     }
     
@@ -233,7 +232,6 @@ function renderizar() {
         let card = document.createElement("div");
         card.className = "card";
         if(joia.status === "vendido") card.style.opacity = "0.7";
-        card.setAttribute("data-numero", joia.numero);
         
         let statusClass = joia.status === "disponivel" ? "disponivel" : (joia.status === "reservado" ? "reservado" : "vendido");
         let statusText = joia.status === "disponivel" ? "Disponível" : (joia.status === "reservado" ? "Reservado" : "Vendido");
@@ -241,19 +239,19 @@ function renderizar() {
         let botoesAdmin = "";
         if(adminLogado) {
             if(joia.status !== "vendido") {
-                botoesAdmin = `<button class="btn-vender" onclick="marcarVendida(${joia.id})">🔨 Marcar vendida</button>`;
+                botoesAdmin = `<div style="margin-top:10px"><button class="btn-vender" onclick="marcarVendida(${joia.id})">🔨 Marcar como vendida</button></div>`;
             } else {
-                botoesAdmin = `<button class="btn-restaurar" onclick="restaurar(${joia.id})">↩️ Restaurar</button>`;
+                botoesAdmin = `<div style="margin-top:10px"><button class="btn-restaurar" onclick="restaurarVenda(${joia.id})">↩️ Restaurar para disponível</button></div>`;
             }
         }
         
         card.innerHTML = `
-            <img src="${joia.img}" onclick="abrirZoom(this.src)" onerror="this.src='https://placehold.co/400x400?text=Sem+imagem'">
-            <div class="info">
+            <img src="${joia.img}" onclick="abrirZoom(this.src)" onerror="this.src='https://placehold.co/400x400?text=Imagem+não+encontrada'">
+            <div>
                 <span class="status ${statusClass}">${statusText}</span>
-                <div class="product-name">${joia.nome}</div>
+                <div style="font-weight:bold; margin:5px 0">${joia.nome}</div>
                 <div class="price">R$ ${joia.preco}</div>
-                ${joia.status !== "vendido" ? `<button class="btn-whats" onclick="comprar(${joia.numero})">💬 WhatsApp</button>` : '<div style="font-size:12px;color:#999">Vendido</div>'}
+                ${joia.status !== "vendido" ? `<button class="btn-whats" onclick="comprar(${joia.numero})">💬 Tenho interesse - WhatsApp</button>` : '<div style="font-size:12px;color:#999;margin-top:8px">🔒 Peça já comercializada</div>'}
                 ${botoesAdmin}
             </div>
         `;
@@ -282,18 +280,14 @@ function fecharZoom() {
     document.getElementById("zoom").style.display = "none";
 }
 
-// Inicialização
-carregar();
+// Inicializar
+carregarDados();
 renderizar();
 
 // Botão admin
 document.getElementById("btnAdmin").onclick = function() {
     let painel = document.getElementById("adminPanel");
-    if(painel.classList.contains("show")) {
-        painel.classList.remove("show");
-    } else {
-        painel.classList.add("show");
-    }
+    painel.classList.toggle("show");
 };
 </script>
 </body>
